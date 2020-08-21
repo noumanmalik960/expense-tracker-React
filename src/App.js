@@ -18,6 +18,7 @@ function App() {
         >
           Learn React
         </a>
+        <h2>Ma wapis aai geya!</h2>
       </header>
     </div>
   );
