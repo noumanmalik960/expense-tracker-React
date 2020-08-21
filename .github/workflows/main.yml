@@ -1,0 +1,26 @@
+name: expense-tracker-deploy
+on: [push]
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install nodejs
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: '12'
+
+    - name: Install yarn
+      uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: install # will run `yarn install` command
+    - uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: build # will run `yarn build` command
+
+    - name: Install Surge
+      run: npm install -g surge
+    - name: Run Surge
+      run: surge ./build bootcamp-reactclass2.surge.sh --token ${{ secrets.SURGE_TOKEN }} 
